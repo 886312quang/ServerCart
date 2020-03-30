@@ -10,9 +10,6 @@ mongoose.connect(process.env.MONGO_URL, err =>{
     }
 })
 
-
-
-
 var bodyParser = require('body-parser')
 const port = 9999;
 
@@ -39,6 +36,7 @@ app.use( function(req, res, next) {
 
 
 app.use('/api/products',apiProductRoute);
+app.use('/api/products/:_id', apiProductRoute);
 app.use(express.static('public'));
 
 app.get('/', (req, res) => res.send('Hello World!'))
