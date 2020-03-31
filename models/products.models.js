@@ -9,6 +9,17 @@ var productsSchema = new mongoose.Schema({
     rating: Number
 });
 
+productsSchema.method.toJSON = function (){
+    return {
+        _id:this._id,
+        it:this.id,
+        name:this.name,
+        img:this.img,
+        price:this.price,
+        inventory:this.inventory,
+        rating:this.rating
+    }
+}
 var Product = mongoose.model('Product',productsSchema,'products')
 
 module.exports = Product;

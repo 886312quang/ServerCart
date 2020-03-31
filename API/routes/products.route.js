@@ -3,8 +3,9 @@ var controller = require('../controllers/products.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/:_id', controller.getId);
 router.post('/', controller.create); 
-router.delete('/_:id', controller.delete);
-  
+router.delete('/:_id', controller.delete);
+router.put('/:_id',controller.put);
 
 module.exports = router;

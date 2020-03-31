@@ -61,10 +61,30 @@ module.exports.create = async function (req, res, next) {
 
 }
 
+module.exports.getId= async function (req, res ,next) {
+    var i= req.params._id;
+
+    var ids = await Product.findById(i);
+   
+    res.json(ids);  
+    next();
+}
+
 module.exports.delete = async function (req, res, next) {
-    
-    return Product.findByIdAndRemove(req.products._id)
+    return Product.findByIdAndRemove(req.params._id)
         .then(() => res.sendStatus(200))
         .catch(next);
+}
+module.exports.put = async function (req, res ,next) {
+    var id= req.params._id;
+    var product = await Product.findById({_id:id});
+    if(product === null){
+        var products = await Product.create(req.body);
+        res.json(products);
+    }else{
+        var products = await Product.findByIdAndUpdate({_id:id},(req.body));
+        res.json(products);
+    }
+    next();
 }
 
