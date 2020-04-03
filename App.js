@@ -15,7 +15,7 @@ var bodyParser = require('body-parser')
 const port = 9999;
 
 var apiProductRoute = require('./API/routes/products.route');
-
+var apiTaskRoute = require('./API/routes/tasks.route');
 
 var app = express()
 
@@ -38,11 +38,14 @@ app.all('', function(req, res, next) {
 
 app.use('/api/products',apiProductRoute);
 app.use('/api/products/:_id', apiProductRoute);
+app.use('/api/tasks',apiTaskRoute);
+app.use('/api/tasks/:_id', apiTaskRoute);
 app.use(express.static('public'));
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
 app.get('/products', (req, res) => res.send('Products'))
+app.get('/tasks', (req, res) => res.send('Task'))
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))
 
