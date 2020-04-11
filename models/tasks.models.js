@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var taskSchema = new mongoose.Schema({
     title: String,
     description: String,
-    status: Number
+    actiontask: Number
 });
 
 taskSchema.method.toJSON = function (){
@@ -11,7 +11,7 @@ taskSchema.method.toJSON = function (){
         _id:this._id,
         title:this.title,
         description:this.description,
-        status:this.status
+        actiontask:this.actiontask
     }
 }
 var Task = mongoose.model('Task',taskSchema,'tasks')

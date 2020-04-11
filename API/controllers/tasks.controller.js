@@ -6,7 +6,6 @@ module.exports.index = async function (req, res) {
 };
 
 module.exports.create = async function (req, res, next) {
-
     const { body } = req;
     if (!body.title) {
         return res.status(422).json({
@@ -22,10 +21,10 @@ module.exports.create = async function (req, res, next) {
             },
         });
     }
-    if (!body.status) {
+    if (!body.actiontask) {
         return res.status(422).json({
             errors: {
-                status: 'is required',
+                actiontask: 'is required',
             },
         });
     }
