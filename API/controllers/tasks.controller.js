@@ -1,8 +1,10 @@
 var Task = require('../../models/tasks.models');
 
 module.exports.index = async function (req, res) {
-    var tasks = await Task.find();
-    res.json(tasks);
+    var q = req.query.q;
+    var tasks = await Task.find({title: RegExp(q)});
+    res.json(tasks);  
+    next();
 };
 
 module.exports.create = async function (req, res, next) {
@@ -38,9 +40,7 @@ module.exports.create = async function (req, res, next) {
 
 module.exports.getId= async function (req, res ,next) {
     var i= req.params._id;
-
-    var ids = await Task.findById(i);
-   
+    var ids = await Task.findById(i); 
     res.json(ids);  
     next();
 }

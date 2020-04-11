@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
 
 var taskSchema = new mongoose.Schema({
-    title: String,
+    title: {
+        type:String, lowercase: true, trim: true
+    },
     description: String,
     actiontask: Number
 });
